@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BeachVolleyApplication {
+public class BVHardWorkerTelegramBotApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BeachVolleyApplication.class, args);
+		SpringApplication.run(BVHardWorkerTelegramBotApplication.class, args);
 	}
-
 }
