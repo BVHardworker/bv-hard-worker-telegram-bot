@@ -1,6 +1,10 @@
-package com.bvhardworker.telegrambot.commands;
+package com.bvhardworker.telegrambot.commands.models;
 
 import lombok.Getter;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+
+import java.util.List;
 
 @Getter
 public enum CommandName {

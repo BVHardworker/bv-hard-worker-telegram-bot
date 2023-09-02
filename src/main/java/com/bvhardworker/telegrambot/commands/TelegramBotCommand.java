@@ -1,8 +1,12 @@
 package com.bvhardworker.telegrambot.commands;
 
+import com.bvhardworker.telegrambot.commands.models.CommandObject;
 import com.bvhardworker.telegrambot.services.MessageSender;
 import lombok.NonNull;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.function.Function;
 
 /**
  * Command abstract class for handling telegram-bot commands.
@@ -15,11 +19,19 @@ public abstract class TelegramBotCommand {
      *
      * @param update provided {@link Update} object with all the needed data for command.
      */
-    public abstract void execute(@NonNull Update update);
+    public void execute(@NonNull Update update) {
+        messageSender.sendMessage(update, getMessageGetter(), getCommand());
+    }
 
-    public abstract CommandName getCommandName();
+    public abstract CommandObject getCommand();
+
+    public abstract Function<Message, String> getMessageGetter();
 
     public void setMessageSender(MessageSender messageSender) {
         this.messageSender = messageSender;
+    }
+
+    public String getCommandName() {
+        return getCommand().getCommandName().getCommandName();
     }
 }

@@ -1,8 +1,13 @@
 package com.bvhardworker.telegrambot.commands;
 
+import com.bvhardworker.telegrambot.commands.models.CommandName;
+import com.bvhardworker.telegrambot.commands.models.CommandObject;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.function.Function;
 
 @Service
 public class StartCommand extends TelegramBotCommand {
@@ -12,12 +17,12 @@ public class StartCommand extends TelegramBotCommand {
             """;
 
     @Override
-    public void execute(@NonNull Update update) {
-        messageSender.sendMessage(update, message -> String.format(MESSAGE, message.getFrom().getFirstName()));
+    public CommandObject getCommand() {
+        return CommandObject.START;
     }
 
     @Override
-    public CommandName getCommandName() {
-        return CommandName.START;
+    public Function<Message, String> getMessageGetter() {
+        return message -> String.format(MESSAGE, message.getFrom().getFirstName());
     }
 }

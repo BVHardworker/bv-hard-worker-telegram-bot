@@ -29,7 +29,7 @@ public abstract class TelegramBotCommandTest {
                 .thenReturn(CHAT_ID);
         TelegramBotCommand command = getCommand();
         Mockito.when(message.getText())
-                .thenReturn(command.getCommandName().getCommandName());
+                .thenReturn(command.getCommandName());
         update.setMessage(message);
 
         SendMessage sendMessage = new SendMessage();

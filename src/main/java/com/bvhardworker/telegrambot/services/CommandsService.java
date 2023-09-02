@@ -1,6 +1,7 @@
 package com.bvhardworker.telegrambot.services;
 
 import com.bvhardworker.telegrambot.commands.TelegramBotCommand;
+import com.bvhardworker.telegrambot.commands.models.CommandObject;
 import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,7 @@ public class CommandsService {
 
     public CommandsService(List<TelegramBotCommand> commands) {
         commandsMap = commands.stream()
-                .collect(Collectors.toMap(command -> command.getCommandName().getCommandName(), command -> command));
+                .collect(Collectors.toMap(TelegramBotCommand::getCommandName, command -> command));
     }
 
     private static boolean pressedButton(@NonNull Update update) {
@@ -71,7 +72,8 @@ public class CommandsService {
     public List<BotCommand> getCommands() {
         return commandsMap.values()
                 .stream()
-                .map(TelegramBotCommand::getCommandName)
+                .map(TelegramBotCommand::getCommand)
+                .map(CommandObject::getCommandName)
                 .map(command -> new BotCommand(command.getCommandName(), command.getDescription()))
                 .collect(Collectors.toList());
     }

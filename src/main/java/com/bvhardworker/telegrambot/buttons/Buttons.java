@@ -1,20 +1,21 @@
 package com.bvhardworker.telegrambot.buttons;
 
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import com.bvhardworker.telegrambot.commands.models.CommandName;
+import lombok.Getter;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.List;
+@Getter
+public enum Buttons {
+    START("Start Bot", CommandName.START.getCommandName()),
+    HELP("Help", CommandName.HELP.getCommandName()),
+    STOP("Stop Bot", CommandName.STOP.getCommandName());
 
-public class Buttons {
-    private static final InlineKeyboardButton START_BUTTON = new InlineKeyboardButton("Start");
-    private static final InlineKeyboardButton HELP_BUTTON = new InlineKeyboardButton("Help");
+    private final String buttonName;
+    private final InlineKeyboardButton inlineKeyboardButton;
 
-    public static InlineKeyboardMarkup inlineMarkup() {
-        START_BUTTON.setCallbackData("/start");
-        HELP_BUTTON.setCallbackData("/help");
-
-        List<InlineKeyboardButton> rowInline = List.of(START_BUTTON, HELP_BUTTON);
-        List<List<InlineKeyboardButton>> rowsInLine = List.of(rowInline);
-        return new InlineKeyboardMarkup(rowsInLine);
+    Buttons(String buttonName, String callbackData) {
+        this.buttonName = buttonName;
+        this.inlineKeyboardButton = new InlineKeyboardButton(buttonName);
+        this.inlineKeyboardButton.setCallbackData(callbackData);
     }
 }
