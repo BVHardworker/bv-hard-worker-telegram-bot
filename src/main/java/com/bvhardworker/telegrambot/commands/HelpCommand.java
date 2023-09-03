@@ -1,5 +1,6 @@
 package com.bvhardworker.telegrambot.commands;
 
+import com.bvhardworker.messages.drawgenerator.DrawType;
 import com.bvhardworker.telegrambot.commands.models.CommandName;
 import com.bvhardworker.telegrambot.commands.models.CommandObject;
 import lombok.NonNull;

@@ -1,3 +1,7 @@
 telegram.bot:
   name: BVolleyHardWorkerBot
   token: 6683779710:AAHwTvEnsQHJhGfN3U8SgYQMMKiqtShIqMw
+
+draw.generator:
+    port: 8888
+    url: localhost

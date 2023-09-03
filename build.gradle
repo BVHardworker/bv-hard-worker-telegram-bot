@@ -35,11 +35,21 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
 	maven { url 'https://repo.spring.io/snapshot' }
+	maven {
+		url = uri("https://maven.pkg.github.com/BVHardworker/messages")
+		credentials {
+			username = project.findProperty("GITHUB_ACTOR") ?: System.getenv("GITHUB_ACTOR")
+			password = project.findProperty("GITHUB_TOKEN") ?: System.getenv("GITHUB_TOKEN")
+		}
+	}
 }
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter"
 	implementation "org.telegram:telegrambots:$telegramBotVersion"
+	implementation "com.bvhardworker.telegram.bot:messages:$messagesVersion"
+	implementation "io.grpc:grpc-stub:$grpcVersion"
+	implementation "io.grpc:grpc-protobuf:$grpcVersion"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
